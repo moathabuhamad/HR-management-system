@@ -1,34 +1,57 @@
-"use strict";
-let department = ["Administration", "Marketing", "Development", "Finance"];
-let level = ["Junior", "Mid-Senior", "Senior"];
+"use strict"
 
-function Employee(id, fullName, departmentIndex, levelIndex) {
-  this.id = id;
+
+let cardContainer = document.getElementById('cardContainer')
+
+function Employee(fullName, department, level, imgurl) {
   this.fullName = fullName;
-  this.department = department[departmentIndex];
-  this.level = level[levelIndex];
+  this.department = department;
+  this.level = level;
   this.salary = Math.floor(this.salaryCalculator() * 0.925);
-  this.render();
+  this.employeeId = this.generateRandomId();
+  this.imgurl = imgurl;
+  this.render()
 }
 
 Employee.prototype.salaryCalculator = function () {
-  if (this.level == "Senior") {
+  if (this.level == "senior") {
     return Math.random() * 500 + 1500;
-  } else if (this.level == "Mid-Senior") {
+  } else if (this.level == "mid") {
     return Math.random() * 500 + 1000;
   } else if (this.level == "Junior") {
     return Math.random() * 500 + 500;
   }
 };
-Employee.prototype.render = function () {
-  document.write(`<div><h4>Name:${this.fullName}</h4><h4>Salary:${this.salary}<h4></div>`);
- 
-};  
 
-const ghazi = new Employee("1000", "Ghazi Samer", 0, 2);
-const lana = new Employee("1001", "Lana Ali", 3, 2);
-const tamara = new Employee("1002", "Tamara Ayoub", 1, 2);
-const safi = new Employee("1003", "Safi Walid", 0, 1);
-const omar = new Employee("1004", "Omar Zaid", 2, 2);
-const rana = new Employee("1005", "Rana Saleh", 2, 0);
-const Hadi = new Employee("1006", "Hadi Ahmad", 3, 1);
+Employee.prototype.render = function () {
+let  card = document.createElement('div')
+cardContainer.appendChild(card)
+let img = document.createElement('img')
+img.setAttribute('src',this.imgurl)
+card.appendChild(img)
+let title = document.createElement('span')
+title.textContent = `Name:${this.fullName}`
+card.appendChild(title)
+let  dep = document.createElement('span')
+dep.textContent = `department:${this.department}`
+card.appendChild(dep)
+let  salary = document.createElement('span')
+salary.textContent = `salary:${this.salary}`
+card.appendChild(salary)
+};
+
+Employee.prototype.generateRandomId = function () {
+  return Math.floor(Math.random() * 9000 + 999);
+};
+
+let form = document.getElementById("myForm");
+form.addEventListener("submit", submitForm)
+function submitForm(event){
+event.preventDefault()
+let name =event.target.fullName.value;
+let department =event.target.department.value;
+let level =event.target.level.value;
+let imgurl =event.target.imgurl.value;
+let newEmployee = new Employee(name, department, level, imgurl)
+console.log(newEmployee);
+}

@@ -16,6 +16,34 @@
       </nav>
     </header>
     <main>
+      <form id="myForm">
+        <fieldset>
+          <legend>Enter Employee Information</legend>
+          <label for="fname">Full name:</label>
+          <input type="text" id="fname" name="fullName" /><br /><br />
+          <label for="department">Choose Depatment:</label>
+          <select name="department" id="department">
+            <option value="administration">Administration</option>
+            <option value="marketing">Marketing</option>
+            <option value="development">Development</option>
+            <option value="finance">Finance</option>
+          </select>
+          <label for="level">Choose Level:</label>
+          <select name="level" id="level">
+            <option value="Junior">Junior</option>
+            <option value="mid">Mid-Senior</option>
+            <option value="senior">Senior</option>
+          </select>
+          <label for="imgurl">Image URL:</label>
+          <input type="text" id="imgurl" name="imgurl" /><br /><br />
+          <input type="submit" value="submit" id="submit">
+        </fieldset>
+      </form>
+
+      <section id='cardContainer'>
+
+
+      </section>
       <script src="/app/app.js"></script>
     </main>
     <footer>
