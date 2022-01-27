@@ -54,4 +54,25 @@ let level =event.target.level.value;
 let imgurl =event.target.imgurl.value;
 let newEmployee = new Employee(name, department, level, imgurl)
 console.log(newEmployee);
+saveData();
 }
+
+function saveData(){
+  let stringifiedData = JSON.stringify(Employee.allEmployees);
+  if (stringifiedData != null){
+  localStorage.setItem("employees", stringifiedData);
+  }
+}
+
+function loadData (){
+  let data = localStorage.getItem("employees");
+  let parcedata= JSON.parse(data);
+  if(parcedata!=null){
+  for (let i=0 ; i<parcedata.length ; i++){
+    new Employee(parcedata[i].fullName, parcedata[i].department, parcedata[i].level, parcedata[i].img);
+  }
+}
+}
+loadData();
+
+console.log(saveData())
